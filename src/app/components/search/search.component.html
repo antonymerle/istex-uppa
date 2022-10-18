@@ -1,0 +1,11 @@
+<form class="search-form" (ngSubmit)="onSubmit()">
+  <input
+    type="text"
+    [(ngModel)]="text"
+    id="search"
+    name="search"
+    placeholder="Zanclean Megaflood"
+  />
+  <button type="submit" (ngSubmit)="onSubmit()">Rechercher</button>
+  <p>{{ text }}</p>
+</form>
