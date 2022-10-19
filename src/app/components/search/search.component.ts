@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -7,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
   text: string = '';
+  // @Output() btnClick = new EventEmitter();
 
-  constructor() {}
+  constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.text);
+    this.searchService.onQuery(this.text);
   }
 }

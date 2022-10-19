@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IstexRecord } from 'src/app/IstexRecord';
+import { APIResult } from 'src/app/APIResult';
+import { IstexService } from 'src/app/services/istex.service';
 
 @Component({
   selector: 'app-results',
@@ -7,13 +9,18 @@ import { IstexRecord } from 'src/app/IstexRecord';
   styleUrls: ['./results.component.css'],
 })
 export class ResultsComponent implements OnInit {
-  results: IstexRecord[] = [
-    { arkIstex: 'bla', title: 'bleh', id: '1abcd', score: 12 },
-  ];
-
-  constructor() {}
+  results: IstexRecord[] = [];
+  constructor(private istexService: IstexService) {}
 
   ngOnInit(): void {
-    // this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
+    // this.istexService
+    //   .getResults()
+    //   .subscribe((results) => (this.results = results.hits));
+  }
+
+  onSearch(): void {
+    this.istexService
+      .getResults()
+      .subscribe((results) => (this.results = results.hits));
   }
 }
