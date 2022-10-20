@@ -15,8 +15,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.istexService
-      .getResults(this.text)
-      .subscribe((results) => (this.results = results.hits));
+    this.istexService.getResults(this.text);
+    // .subscribe((results) => (this.results = results.hits));
   }
 }
