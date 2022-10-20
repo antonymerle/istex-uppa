@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SearchService } from 'src/app/services/search.service';
+import { IstexService } from 'src/app/services/istex.service';
+import { IstexRecord } from 'src/app/IstexRecord';
 
 @Component({
   selector: 'app-search',
@@ -8,13 +9,14 @@ import { SearchService } from 'src/app/services/search.service';
 })
 export class SearchComponent implements OnInit {
   text: string = '';
-  // @Output() btnClick = new EventEmitter();
-
-  constructor(private searchService: SearchService) {}
+  results: IstexRecord[] = [];
+  constructor(private istexService: IstexService) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    this.searchService.onQuery(this.text);
+    this.istexService
+      .getResults(this.text)
+      .subscribe((results) => (this.results = results.hits));
   }
 }

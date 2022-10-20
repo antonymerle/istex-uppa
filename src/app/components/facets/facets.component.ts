@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-facets',
   templateUrl: './facets.component.html',
-  styleUrls: ['./facets.component.css']
+  styleUrls: ['./facets.component.css'],
 })
 export class FacetsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  onTest() {
+    console.log('test');
   }
-
 }

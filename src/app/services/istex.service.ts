@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IstexRecord } from '../IstexRecord';
+import { HttpClient } from '@angular/common/http';
 import { APIResult } from '../APIResult';
 import { Observable } from 'rxjs';
 import { SearchService } from './search.service';
@@ -13,9 +12,7 @@ export class IstexService {
 
   constructor(private http: HttpClient, private searchService: SearchService) {}
 
-  getResults(): Observable<APIResult> {
-    return this.http.get<APIResult>(
-      this.apiURL + this.searchService.getQuery()
-    );
+  getResults(query: string): Observable<APIResult> {
+    return this.http.get<APIResult>(this.apiURL + query);
   }
 }
