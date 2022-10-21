@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { APIResult } from '../APIResult';
 import { IstexRecord } from '../IstexRecord';
 import { Observable, Subject, of, BehaviorSubject } from 'rxjs';
-import { SearchService } from './search.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +12,7 @@ export class IstexService {
   results: IstexRecord[] = [];
   beh = new BehaviorSubject(this.results);
 
-  constructor(private http: HttpClient, private searchService: SearchService) {}
+  constructor(private http: HttpClient) {}
 
   // getResults(query: string): Observable<APIResult> {
   //   return this.http.get<APIResult>(this.apiURL + query);
