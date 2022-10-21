@@ -10,7 +10,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
   styleUrls: ['./results.component.css'],
 })
 export class ResultsComponent implements OnInit {
-  results = this.istexService.beh.asObservable();
+  results = this.istexService.BSResult.asObservable();
 
   constructor(private istexService: IstexService) {}
 

@@ -9,6 +9,8 @@ import { SearchComponent } from './components/search/search.component';
 import { ResultsComponent } from './components/results/results.component';
 import { FacetsComponent } from './components/facets/facets.component';
 import { ResultComponent } from './components/result/result.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,14 @@ import { ResultComponent } from './components/result/result.component';
     ResultsComponent,
     FacetsComponent,
     ResultComponent,
+    PaginatorComponent,
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

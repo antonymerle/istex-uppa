@@ -9,14 +9,31 @@ import { Observable, Subject, of, BehaviorSubject } from 'rxjs';
 })
 export class IstexService {
   private apiURL = 'https://api.istex.fr/document/?q=';
+  apiResponse!: APIResult;
   results: IstexRecord[] = [];
-  beh = new BehaviorSubject(this.results);
+
+  BSResult = new BehaviorSubject(this.results);
+  BSApiResponse = new BehaviorSubject(this.apiResponse);
 
   constructor(private http: HttpClient) {}
+
   getResults(query: string): void {
-    this.http.get<APIResult>(this.apiURL + query).subscribe((results) => {
-      this.beh.next(results.hits);
-      console.log(results.hits);
+    this.http.get<APIResult>(this.apiURL + query).subscribe((data) => {
+      this.BSApiResponse.next(data);
+      this.BSResult.next(data.hits);
     });
+  }
+
+  getNextResults(): void {
+    console.log(this.BSApiResponse.getValue().nextPageURI!);
+    if (!this.BSApiResponse.getValue()) return;
+
+    this.http
+      .get<APIResult>(this.BSApiResponse.getValue().nextPageURI!)
+      .subscribe((data) => {
+        this.BSApiResponse.next(data);
+        this.BSResult.next(data.hits);
+      });
+    console.log('getNextResults');
   }
 }

@@ -1,0 +1,15 @@
+<!-- <mat-paginator [pageSizeOptions]="[10]" [length]="getLength()"></mat-paginator> -->
+
+<!-- <mat-paginator
+  [length]="getLength()"
+  pageSize="10"
+  (page)="getPaginatorData($event)"
+  [pageSizeOptions]="[5, 10]"
+  showFirstLastButtons="false"
+></mat-paginator> -->
+
+<nav>
+  <ol>
+    <li><button type="button" (click)="getNextResults()">Next</button></li>
+  </ol>
+</nav>
