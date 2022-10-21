@@ -13,11 +13,6 @@ export class IstexService {
   beh = new BehaviorSubject(this.results);
 
   constructor(private http: HttpClient) {}
-
-  // getResults(query: string): Observable<APIResult> {
-  //   return this.http.get<APIResult>(this.apiURL + query);
-  // }
-
   getResults(query: string): void {
     this.http.get<APIResult>(this.apiURL + query).subscribe((results) => {
       this.beh.next(results.hits);
