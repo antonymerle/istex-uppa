@@ -63,7 +63,7 @@ export class IstexService {
     if (!this.BSApiResponse.getValue() || this.paginator.pageIndex <= 1) return;
 
     this.http
-      .get<APIResult>(this.BSApiResponse.getValue().lastPageURI!)
+      .get<APIResult>(this.BSApiResponse.getValue().prevPageURI!)
       .subscribe((data) => {
         this.BSApiResponse.next(data);
         this.BSResult.next(data.hits);
