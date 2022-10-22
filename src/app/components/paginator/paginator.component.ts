@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { APIResult } from 'src/app/APIResult';
 import { IstexService } from 'src/app/services/istex.service';
 
@@ -8,13 +8,13 @@ import { IstexService } from 'src/app/services/istex.service';
   styleUrls: ['./paginator.component.css'],
 })
 export class PaginatorComponent implements OnInit {
-  lowValue: number = 0;
-  highValue: number = 20;
+  // pagesRange!: Array<number>;
 
   constructor(private istexService: IstexService) {}
 
   ngOnInit(): void {
     // this.istexService.getNextPageResults();
+    // this.genPagesRange();
   }
 
   getLength(): number {
@@ -25,14 +25,16 @@ export class PaginatorComponent implements OnInit {
     return 0;
   }
 
-  // used to build a slice of papers relevant at any given time
-  // public getPaginatorData(event: PageEvent): PageEvent {
-  //   this.lowValue = event.pageIndex * event.pageSize;
-  //   this.highValue = this.lowValue + event.pageSize;
-  //   return event;
-  // }
+  getPageIndex() {
+    return this.istexService.getPageIndex();
+  }
 
   getNextResults() {
     this.istexService.getNextResults();
+    // this.pageIndex++;
+  }
+
+  getPagesRange(): Array<number> {
+    return this.istexService.getPagesRange();
   }
 }

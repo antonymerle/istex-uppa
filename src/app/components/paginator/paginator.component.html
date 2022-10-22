@@ -8,8 +8,10 @@
   showFirstLastButtons="false"
 ></mat-paginator> -->
 
-<nav>
+<nav *ngIf="getPageIndex() > 0">
+  <button type="button" (click)="getNextResults()">Next</button>
+  <!-- <p><a (click)="getNextResults()">Next</a></p> -->
   <ol>
-    <li><button type="button" (click)="getNextResults()">Next</button></li>
+    <li *ngFor="let page of getPagesRange(); let index = index">{{ page }}</li>
   </ol>
 </nav>

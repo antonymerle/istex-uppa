@@ -14,7 +14,9 @@ export class ResultsComponent implements OnInit {
 
   constructor(private istexService: IstexService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.istexService.getPageIndex();
+  }
 
   // onClick() {
   //   console.log(this.results$.subscribe((results) => results));
