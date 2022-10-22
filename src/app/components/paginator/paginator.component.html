@@ -3,7 +3,12 @@
   <button type="button" (click)="getNextResults()">Next</button>
   <ol>
     <li *ngFor="let page of getPagesRange(); let index = index">
-      <a href="#" (click)="getIndexPageResults(page)">{{ page }}</a>
+      <a
+        href="#"
+        [ngClass]="{ highlight: index + 1 === getPageIndex() }"
+        (click)="getIndexPageResults(index + 1)"
+        >{{ index + 1 }}</a
+      >
     </li>
   </ol>
 </nav>
