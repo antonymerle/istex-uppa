@@ -27,7 +27,12 @@ export class IstexService {
     this.http.get<APIResult>(this.apiURL + query).subscribe((data) => {
       this.BSApiResponse.next(data);
       this.BSResult.next(data.hits);
-      this.paginator.pageIndex++;
+      if (this.paginator.pageIndex === 0) {
+        this.paginator.pageIndex++;
+      } else {
+        // reset état car le paginateur était déjà déclenché par une précédente recherche
+        this.paginator.pageIndex = 1;
+      }
     });
   }
 
@@ -46,9 +51,22 @@ export class IstexService {
     console.log('getNextResults');
   }
 
-  incrementIndex(n: number) {
-    const newIndex = this.BSPageIndex.getValue() + n;
-    this.BSPageIndex.next(newIndex);
+  getIndexPageResults(index: number) {
+    index = index - 1; // API count from 0, frontend from 1
+    if (index > Math.ceil(this.BSApiResponse.getValue().total / 10)) {
+      // 10 = nombre de résultat par page. TODO : à rendre dynamique
+      return;
+    }
+    const apiURLFromIndex =
+      this.BSApiResponse.getValue().firstPageURI?.slice(0, -1) +
+      (index * 10).toString(); // _API_URL_&from=0 -> _API_URL_&from=index*10
+    console.log(apiURLFromIndex);
+
+    this.http.get<APIResult>(apiURLFromIndex).subscribe((data) => {
+      this.BSApiResponse.next(data);
+      this.BSResult.next(data.hits);
+      this.incrementIndex(index);
+    });
   }
 
   getPagesRange(): Array<number> {
@@ -59,6 +77,11 @@ export class IstexService {
       i++;
     }
     return array;
+  }
+
+  incrementIndex(n: number) {
+    const newIndex = this.BSPageIndex.getValue() + n;
+    this.paginator.pageIndex += n;
   }
 
   getPageIndex(): number {

@@ -11,7 +11,5 @@ export class ResultsComponent implements OnInit {
 
   constructor(private istexService: IstexService) {}
 
-  ngOnInit(): void {
-    this.istexService.getPageIndex();
-  }
+  ngOnInit(): void {}
 }
