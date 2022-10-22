@@ -71,9 +71,10 @@ export class IstexService {
 
   getPagesRange(): Array<number> {
     let array: number[] = [];
+    const middleOffset = this.paginator.pageIndex > 3 ? 2 : 0;
     let i = 0;
     while (i < this.paginator.RANGE) {
-      array.push(this.paginator.pageIndex + i);
+      array.push(this.paginator.pageIndex - middleOffset + i);
       i++;
     }
     return array;
