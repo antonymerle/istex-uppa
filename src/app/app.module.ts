@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { FacetsComponent } from './components/facets/facets.component';
 import { ResultComponent } from './components/result/result.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SelectResultsSizeComponent } from './components/select-results-size/select-results-size.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +22,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FacetsComponent,
     ResultComponent,
     PaginatorComponent,
+    SelectResultsSizeComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
   ],

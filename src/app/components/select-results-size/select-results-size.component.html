@@ -1,0 +1,16 @@
+<form [formGroup]="resultSizeFormGroup">
+  <label for="resultsSize">Results size</label>
+  <select
+    formControlName="resultsSize"
+    id="resultsSize"
+    (change)="onSelectOption($any($event.target).value)"
+    [(ngModel)]="selected"
+  >
+    <option
+      *ngFor="let result of resultsSize; let i = index"
+      [ngValue]="resultsSize[i]"
+    >
+      {{ resultsSize[i] }}
+    </option>
+  </select>
+</form>
