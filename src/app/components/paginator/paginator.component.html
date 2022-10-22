@@ -1,6 +1,6 @@
 <nav *ngIf="getPageIndex() >= 0">
-  <p>{{ getLength() }} résultats</p>
-  <button type="button" (click)="getNextResults()">Next</button>
+  <p>{{ getTotal() }} résultats</p>
+  <button type="button" (click)="getNextResults()">Page suivante</button>
   <ol>
     <li *ngFor="let page of getPagesRange(); let index = index">
       <a
@@ -11,4 +11,5 @@
       >
     </li>
   </ol>
+  <button type="button" (click)="getPreviousResults()">Page précédente</button>
 </nav>

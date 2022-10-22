@@ -12,12 +12,8 @@ export class PaginatorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getLength(): number {
-    const res = this.istexService.BSApiResponse.getValue();
-    if (res) {
-      return res.total;
-    }
-    return 0;
+  getTotal() {
+    return this.istexService.getTotal();
   }
 
   getPageIndex() {
@@ -26,6 +22,10 @@ export class PaginatorComponent implements OnInit {
 
   getNextResults() {
     this.istexService.getNextResults();
+  }
+
+  getPreviousResults() {
+    this.istexService.getPreviousResults();
   }
 
   getIndexPageResults(index: number) {

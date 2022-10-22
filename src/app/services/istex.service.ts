@@ -23,6 +23,11 @@ export class IstexService {
 
   constructor(private http: HttpClient) {}
 
+  getTotal(): number {
+    if (!this.BSApiResponse.getValue()) return 0;
+    return this.BSApiResponse.getValue().total;
+  }
+
   getResults(query: string): void {
     this.http.get<APIResult>(this.apiURL + query).subscribe((data) => {
       this.BSApiResponse.next(data);
@@ -37,7 +42,11 @@ export class IstexService {
 
   getNextResults(): void {
     console.log(this.BSApiResponse.getValue().nextPageURI!);
-    if (!this.BSApiResponse.getValue()) return;
+    if (
+      !this.BSApiResponse.getValue() ||
+      this.paginator.pageIndex >= this.getTotal()
+    )
+      return;
 
     this.http
       .get<APIResult>(this.BSApiResponse.getValue().nextPageURI!)
@@ -48,6 +57,17 @@ export class IstexService {
 
     this.paginator.pageIndex++;
     console.log('getNextResults');
+  }
+
+  getPreviousResults(): void {
+    if (!this.BSApiResponse.getValue() || this.paginator.pageIndex <= 0) return;
+
+    this.http
+      .get<APIResult>(this.BSApiResponse.getValue().lastPageURI!)
+      .subscribe((data) => {
+        this.BSApiResponse.next(data);
+        this.BSResult.next(data.hits);
+      });
   }
 
   getIndexPageResults(index: number) {
