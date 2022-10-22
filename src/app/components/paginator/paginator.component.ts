@@ -29,7 +29,7 @@ export class PaginatorComponent implements OnInit {
   }
 
   getIndexPageResults(index: number) {
-    this.istexService.getIndexPageResults(index);
+    this.istexService.getPageResultsByPageIndex(index);
   }
 
   getPagesRange(): Array<number> {
