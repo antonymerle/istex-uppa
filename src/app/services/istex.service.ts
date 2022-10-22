@@ -60,7 +60,7 @@ export class IstexService {
   }
 
   getPreviousResults(): void {
-    if (!this.BSApiResponse.getValue() || this.paginator.pageIndex <= 0) return;
+    if (!this.BSApiResponse.getValue() || this.paginator.pageIndex <= 1) return;
 
     this.http
       .get<APIResult>(this.BSApiResponse.getValue().lastPageURI!)
@@ -68,6 +68,9 @@ export class IstexService {
         this.BSApiResponse.next(data);
         this.BSResult.next(data.hits);
       });
+
+    this.paginator.pageIndex--;
+    console.log('getPreviousResults');
   }
 
   getIndexPageResults(index: number) {
