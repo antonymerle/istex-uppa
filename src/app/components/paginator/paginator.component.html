@@ -1,4 +1,4 @@
-<nav *ngIf="getPageIndex() >= 0">
+<nav *ngIf="getPageIndex() > 0">
   <p>{{ getTotal() }} résultats</p>
   <button type="button" (click)="getNextResults()">Page suivante</button>
   <ol>
