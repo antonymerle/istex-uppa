@@ -14,7 +14,7 @@ export class IstexService {
   results: IstexRecord[] = [];
   paginator: Paginator = {
     RANGE: 5,
-    pageIndex: 0,
+    pageIndex: -1,
   };
 
   BSResult = new BehaviorSubject(this.results);
@@ -27,12 +27,11 @@ export class IstexService {
     this.http.get<APIResult>(this.apiURL + query).subscribe((data) => {
       this.BSApiResponse.next(data);
       this.BSResult.next(data.hits);
-      if (this.paginator.pageIndex === 0) {
-        this.paginator.pageIndex++;
-      } else {
+      if (this.paginator.pageIndex >= 0) {
         // reset état car le paginateur était déjà déclenché par une précédente recherche
-        this.paginator.pageIndex = 1;
+        this.paginator.pageIndex = 0;
       }
+      this.paginator.pageIndex++;
     });
   }
 
@@ -52,7 +51,6 @@ export class IstexService {
   }
 
   getIndexPageResults(index: number) {
-    index = index - 1; // API count from 0, frontend from 1
     if (index > Math.ceil(this.BSApiResponse.getValue().total / 10)) {
       // 10 = nombre de résultat par page. TODO : à rendre dynamique
       return;
@@ -65,27 +63,36 @@ export class IstexService {
     this.http.get<APIResult>(apiURLFromIndex).subscribe((data) => {
       this.BSApiResponse.next(data);
       this.BSResult.next(data.hits);
-      this.incrementIndex(index);
+      // this.incrementIndex(index);
+      this.paginator.pageIndex = index;
     });
   }
 
   getPagesRange(): Array<number> {
     let array: number[] = [];
-    const middleOffset = this.paginator.pageIndex > 3 ? 2 : 0;
+    if (this.paginator.pageIndex < 4) {
+      return [1, 2, 3, 4, 5];
+    }
+    const middleOffset = 2;
     let i = 0;
     while (i < this.paginator.RANGE) {
-      array.push(this.paginator.pageIndex - middleOffset + i);
+      array.push(this.paginator.pageIndex + i - middleOffset);
       i++;
     }
+    console.log('get page range');
+    console.log(array);
+
     return array;
   }
 
   incrementIndex(n: number) {
-    const newIndex = this.BSPageIndex.getValue() + n;
+    // const newIndex = this.BSPageIndex.getValue() + n;
     this.paginator.pageIndex += n;
   }
 
   getPageIndex(): number {
+    console.log('get page index : ' + this.paginator.pageIndex);
+
     return this.paginator.pageIndex;
   }
 }
