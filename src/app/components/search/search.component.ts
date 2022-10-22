@@ -16,6 +16,5 @@ export class SearchComponent implements OnInit {
 
   onSubmit() {
     this.istexService.getResults(this.text);
-    // .subscribe((results) => (this.results = results.hits));
   }
 }

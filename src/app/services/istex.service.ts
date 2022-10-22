@@ -27,8 +27,6 @@ export class IstexService {
     this.http.get<APIResult>(this.apiURL + query).subscribe((data) => {
       this.BSApiResponse.next(data);
       this.BSResult.next(data.hits);
-      // this.incrementIndex(1);
-      // console.log(this.BSPageIndex.getValue());
       this.paginator.pageIndex++;
     });
   }

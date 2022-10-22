@@ -8,14 +8,9 @@ import { IstexService } from 'src/app/services/istex.service';
   styleUrls: ['./paginator.component.css'],
 })
 export class PaginatorComponent implements OnInit {
-  // pagesRange!: Array<number>;
-
   constructor(private istexService: IstexService) {}
 
-  ngOnInit(): void {
-    // this.istexService.getNextPageResults();
-    // this.genPagesRange();
-  }
+  ngOnInit(): void {}
 
   getLength(): number {
     const res = this.istexService.BSApiResponse.getValue();
@@ -31,7 +26,6 @@ export class PaginatorComponent implements OnInit {
 
   getNextResults() {
     this.istexService.getNextResults();
-    // this.pageIndex++;
   }
 
   getPagesRange(): Array<number> {
