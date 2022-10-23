@@ -99,18 +99,29 @@ export class IstexService {
 
   getPagesRange(): Array<number> {
     let array: number[] = [];
+    const middleOffset = 2;
 
-    // genPageRange doit toujours générer des arrays de 5 numeros ou totalPages
+    // genPageRange doit toujours générer des arrays de 5 numeros ou à défaut de totalPages
 
+    // si il y a moins de pages que RANGE (5)
     if (this.paginator.totalPages < this.paginator.RANGE) {
-      return this.genArrayFromLowerBound(1, this.paginator.totalPages + 1);
+      return this.genArrayFromLowerBound(1, this.paginator.totalPages);
     }
 
+    // si le paginateur arrive au bout de l'array de pages, on bloque
+    if (this.paginator.pageIndex + middleOffset >= this.paginator.totalPages) {
+      return this.genArrayFromLowerBound(
+        this.paginator.totalPages + 1 - this.paginator.RANGE,
+        this.paginator.totalPages + 1
+      );
+    }
+
+    // on attend 4 pour décalerle range de pages
     if (this.paginator.pageIndex < 4) {
       return this.genArrayFromLowerBound(1, this.paginator.RANGE);
     }
 
-    const middleOffset = 2;
+    // cas normal, on génère un range de pages dont le milieu est pageIndex
     return this.genArrayFromLowerBound(
       this.paginator.pageIndex - middleOffset,
       this.paginator.RANGE
