@@ -1,10 +1,6 @@
 export interface Aggregation {
-  corpusName: bucket;
-  genre: bucket;
-  langue: bucket;
-  publicationDate: bucket;
-}
-
-interface bucket {
-  buckets: Array<{ key: string; docCount: number }>;
+  corpusName: { buckets: Array<{ key: string; docCount: number }> };
+  genre: { buckets: Array<{ key: string; docCount: number }> };
+  langue: { buckets: Array<{ key: string; docCount: number }> };
+  publicationDate: { buckets: Array<{ key: string; docCount: number }> };
 }
