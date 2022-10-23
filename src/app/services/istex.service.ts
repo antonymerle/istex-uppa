@@ -34,7 +34,13 @@ export class IstexService {
 
   getResults(query: string): void {
     this.http
-      .get<APIResult>(this.apiURL + query + this.fmtSzQueryParam())
+      .get<APIResult>(
+        this.apiURL +
+          query +
+          this.fmtSzQueryParam() +
+          '&output=*' +
+          '&facet=corpusName,genre,langue,publicationDate'
+      )
       .subscribe((data) => {
         this.BSApiResponse.next(data);
         this.BSResult.next(data.hits);
@@ -116,7 +122,7 @@ export class IstexService {
       );
     }
 
-    // on attend 4 pour décalerle range de pages
+    // on attend 4 pour décaler le range de pages
     if (this.paginator.pageIndex < 4) {
       return this.genArrayFromLowerBound(1, this.paginator.RANGE);
     }
