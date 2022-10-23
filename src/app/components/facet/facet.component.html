@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let corpus of (data | async)!.aggregations.corpusName.buckets">
+    {{ corpus.key }} : {{ corpus.docCount }}
+  </li>
+</ul>

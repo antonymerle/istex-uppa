@@ -12,6 +12,7 @@ import { ResultComponent } from './components/result/result.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectResultsSizeComponent } from './components/select-results-size/select-results-size.component';
+import { FacetComponent } from './components/facet/facet.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SelectResultsSizeComponent } from './components/select-results-size/sel
     ResultComponent,
     PaginatorComponent,
     SelectResultsSizeComponent,
+    FacetComponent,
   ],
   imports: [
     BrowserModule,
