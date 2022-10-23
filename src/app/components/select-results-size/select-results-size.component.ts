@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { IstexService } from 'src/app/services/istex.service';
 
 @Component({
   selector: 'app-select-results-size',
@@ -7,7 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./select-results-size.component.css'],
 })
 export class SelectResultsSizeComponent {
-  constructor() {}
+  constructor(private istexService: IstexService) {}
 
   resultSizeFormGroup: FormGroup = new FormGroup({
     resultsSize: new FormControl(),
@@ -16,7 +17,8 @@ export class SelectResultsSizeComponent {
 
   selected: number = 10;
 
-  onSelectOption(value: number) {
-    console.log(value);
+  onSelectOption() {
+    this.istexService.setResultsSize(this.selected);
+    // console.log(this.selected);
   }
 }

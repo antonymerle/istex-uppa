@@ -14,7 +14,11 @@ export class IstexService {
   results: IstexRecord[] = [];
   paginator: Paginator = {
     RANGE: 5,
+    totalPages: 0,
     pageIndex: 0,
+    DEFAULT_RESULTS_SIZE: 10,
+    RESULTS_MAX_SIZE: 500,
+    resultsSize: 10,
   };
 
   BSResult = new BehaviorSubject(this.results);
@@ -29,15 +33,18 @@ export class IstexService {
   }
 
   getResults(query: string): void {
-    this.http.get<APIResult>(this.apiURL + query).subscribe((data) => {
-      this.BSApiResponse.next(data);
-      this.BSResult.next(data.hits);
-      if (this.paginator.pageIndex > 0) {
-        // reset état car le paginateur était déjà déclenché par une précédente recherche
-        this.paginator.pageIndex = 0;
-      }
-      this.paginator.pageIndex++;
-    });
+    this.http
+      .get<APIResult>(this.apiURL + query + this.fmtSzQueryParam())
+      .subscribe((data) => {
+        this.BSApiResponse.next(data);
+        this.BSResult.next(data.hits);
+        this.paginator.totalPages = this.getPaginatorTotalPages();
+        if (this.paginator.pageIndex > 0) {
+          // reset état car le paginateur était déjà déclenché par une précédente recherche
+          this.paginator.pageIndex = 0;
+        }
+        this.paginator.pageIndex++;
+      });
   }
 
   getNextResults(): void {
@@ -74,13 +81,12 @@ export class IstexService {
   }
 
   getPageResultsByPageIndex(index: number) {
-    if (index > Math.ceil(this.BSApiResponse.getValue().total / 10)) {
-      // 10 = nombre de résultats par page. TODO : à rendre dynamique
+    if (index > this.getPaginatorTotalPages()) {
       return;
     }
     const apiURLFromIndex =
       this.BSApiResponse.getValue().firstPageURI?.slice(0, -1) +
-      ((index - 1) * 10).toString(); // _API_URL_&from=0 -> _API_URL_&from=index*10
+      ((index - 1) * this.paginator.resultsSize).toString(); // _API_URL_&from=0 -> _API_URL_&from=index*10
     console.log(apiURLFromIndex);
 
     this.http.get<APIResult>(apiURLFromIndex).subscribe((data) => {
@@ -93,19 +99,50 @@ export class IstexService {
 
   getPagesRange(): Array<number> {
     let array: number[] = [];
-    if (this.paginator.pageIndex < 4) {
-      return [1, 2, 3, 4, 5];
-    }
-    const middleOffset = 2;
-    let i = 0;
-    while (i < this.paginator.RANGE) {
-      array.push(this.paginator.pageIndex + i - middleOffset);
-      i++;
-    }
-    console.log('get page range');
-    console.log(array);
 
-    return array;
+    // genPageRange doit toujours générer des arrays de 5 numeros ou totalPages
+
+    if (this.paginator.totalPages < this.paginator.RANGE) {
+      return this.genArrayFromLowerBound(1, this.paginator.totalPages + 1);
+    }
+
+    if (this.paginator.pageIndex < 4) {
+      return this.genArrayFromLowerBound(1, this.paginator.RANGE);
+    }
+
+    const middleOffset = 2;
+    return this.genArrayFromLowerBound(
+      this.paginator.pageIndex - middleOffset,
+      this.paginator.RANGE
+    );
+
+    // ========================================
+
+    // // début de pagination
+    // if (this.paginator.pageIndex < 4) {
+    //   return [1, 2, 3, 4, 5];
+    // }
+
+    // // fin de pagination
+    // if (this.paginator.pageIndex >= this.paginator.totalPages - 5) {
+    //   let i = 0;
+    //   while (i < this.paginator.RANGE && i <= this.paginator.totalPages) {
+    //     array.push(this.paginator.pageIndex + i);
+    //     i++;
+    //   }
+    //   return array;
+    // }
+
+    // const middleOffset = 2;
+    // let i = 0;
+    // while (i < this.paginator.RANGE) {
+    //   array.push(this.paginator.pageIndex + i - middleOffset);
+    //   i++;
+    // }
+    // console.log('get page range');
+    // console.log(array);
+
+    // return array;
   }
 
   incrementIndex(n: number) {
@@ -117,5 +154,44 @@ export class IstexService {
     console.log('get page index : ' + this.paginator.pageIndex);
 
     return this.paginator.pageIndex;
+  }
+
+  setResultsSize(size: number = this.paginator.DEFAULT_RESULTS_SIZE): void {
+    if (
+      size < this.paginator.DEFAULT_RESULTS_SIZE ||
+      size > this.paginator.RESULTS_MAX_SIZE
+    )
+      this.paginator.resultsSize = this.paginator.DEFAULT_RESULTS_SIZE;
+
+    this.BSApiResponse.subscribe((data) => {
+      data.nextPageURI = data.nextPageURI?.replace(
+        this.fmtSzQueryParam(),
+        `&size=${size}`
+      );
+      data.prevPageURI = data.prevPageURI?.replace(
+        this.fmtSzQueryParam(),
+        `&size=${size}`
+      );
+    });
+
+    this.paginator.resultsSize = size;
+    this.paginator.totalPages = this.getPaginatorTotalPages();
+
+    console.log('istexService selected size : ');
+    console.log(this.paginator);
+  }
+
+  fmtSzQueryParam(): string {
+    return `&size=${this.paginator.resultsSize}`;
+  }
+
+  getPaginatorTotalPages(): number {
+    return Math.ceil(
+      this.BSApiResponse.getValue().total / this.paginator.resultsSize
+    );
+  }
+
+  genArrayFromLowerBound(lowerBound: number, sz: number): Array<number> {
+    return Array.from(new Array(sz), (x, i) => i + lowerBound);
   }
 }
