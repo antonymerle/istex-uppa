@@ -3,6 +3,7 @@ export interface IstexRecord {
   corpusName: string;
   author: Array<{ name: string; affiliations: Array<string> }>;
   subject: Array<string>;
+  genre: Array<string>;
   language: Array<string>;
   abstract: string;
   host: {
@@ -15,5 +16,4 @@ export interface IstexRecord {
   doi: string;
   fulltext: Array<{ extension: string; mimetype: string; uri: string }>;
   id: string;
-  // score: number;
 }

@@ -1,4 +1,5 @@
 import { IstexRecord } from './IstexRecord';
+import { Aggregation } from './Aggregation';
 
 export interface APIResult {
   total: number;
@@ -7,4 +8,5 @@ export interface APIResult {
   firstPageURI?: string;
   lastPageURI?: string;
   hits: IstexRecord[];
+  aggregations: Aggregation;
 }
