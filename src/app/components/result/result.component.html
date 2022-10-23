@@ -1,6 +1,17 @@
 <section>
-  <p>{{ result.arkIstex }}</p>
-  <p>{{ result.title }}</p>
-  <p>{{ result.id }}</p>
-  <p>{{ result.score }}</p>
+  <h3>{{ result.title }}</h3>
+  <p>{{ result.abstract }}</p>
+  <ul>
+    auteurs
+    <li *ngFor="let author of result.author">{{ author.name }}</li>
+  </ul>
+  <p>Corpus : {{ result.corpusName }}</p>
+  <p>{{ result.host.title }}</p>
+  <p>
+    vol. {{ result.host.volume }} pages {{ result.host.pages.first }} -
+    {{ result.host.pages.last }}
+  </p>
+  <p>Date de publication : {{ result.publicationDate }}</p>
+  <p>DOI : {{ result.doi }}</p>
+  <p><a href="{{ result.fulltext[0].uri }}">Full text</a></p>
 </section>
