@@ -39,7 +39,7 @@ export class IstexService {
           query +
           this.fmtSzQueryParam() +
           '&output=*' +
-          '&facet=corpusName,genre,langue,publicationDate'
+          '&facet=corpusName,genre,language,publicationDate'
       )
       .subscribe((data) => {
         this.BSApiResponse.next(data);

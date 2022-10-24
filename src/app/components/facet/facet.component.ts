@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IstexService } from 'src/app/services/istex.service';
+import { Bucket } from 'src/app/Aggregation';
 
 @Component({
   selector: 'app-facet',
@@ -8,7 +9,7 @@ import { IstexService } from 'src/app/services/istex.service';
   styleUrls: ['./facet.component.css'],
 })
 export class FacetComponent implements OnInit {
-  data = this.istexService.BSApiResponse.asObservable();
+  @Input() facetGroup!: Bucket;
 
   constructor(private istexService: IstexService) {}
 

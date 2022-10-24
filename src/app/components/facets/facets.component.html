@@ -1,6 +1,20 @@
-<aside>
-  <app-facet></app-facet>
-  <app-facet></app-facet>
-  <app-facet></app-facet>
-  <app-facet></app-facet>
-</aside>
+<app-facet
+  *ngIf="(facets | async)!.aggregations.corpusName"
+  class="app-facet"
+  [facetGroup]="(facets | async)!.aggregations.corpusName"
+></app-facet>
+<app-facet
+  *ngIf="(facets | async)!.aggregations.corpusName"
+  class="app-facet"
+  [facetGroup]="(facets | async)!.aggregations.genre"
+></app-facet>
+<app-facet
+  *ngIf="(facets | async)!.aggregations.corpusName"
+  class="app-facet"
+  [facetGroup]="(facets | async)!.aggregations.language"
+></app-facet>
+<app-facet
+  *ngIf="(facets | async)!.aggregations.corpusName"
+  class="app-facet"
+  [facetGroup]="(facets | async)!.aggregations.publicationDate"
+></app-facet>

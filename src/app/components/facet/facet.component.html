@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let corpus of (data | async)!.aggregations.corpusName.buckets">
-    {{ corpus.key }} : {{ corpus.docCount }}
+  <li *ngFor="let facetElement of facetGroup.buckets">
+    {{ facetElement.key }} : {{ facetElement.docCount }}
   </li>
 </ul>
