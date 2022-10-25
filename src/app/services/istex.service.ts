@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APIResult } from '../APIResult';
 import { IstexRecord } from '../IstexRecord';
+import { FacetCategory } from '../Aggregation';
 import { Paginator } from '../Paginator';
 import { Observable, Subject, of, BehaviorSubject } from 'rxjs';
 
@@ -23,7 +24,10 @@ export class IstexService {
 
   BSResult = new BehaviorSubject(this.results);
   BSApiResponse = new BehaviorSubject(this.apiResponse);
-  // BSPageIndex = new BehaviorSubject(0);
+  corpusNamecheckedFacets: Set<string> = new Set();
+  genrecheckedFacets: Set<string> = new Set();
+  languagecheckedFacets: Set<string> = new Set();
+  publicationDatecheckedFacets: Set<string> = new Set();
 
   constructor(private http: HttpClient) {}
 
@@ -210,5 +214,49 @@ export class IstexService {
 
   genArrayFromLowerBound(lowerBound: number, sz: number): Array<number> {
     return Array.from(new Array(sz), (x, i) => i + lowerBound);
+  }
+
+  registerFacet(category: FacetCategory, facet: string) {
+    switch (category) {
+      case 0:
+        if (this.corpusNamecheckedFacets.has(facet)) {
+          this.corpusNamecheckedFacets.delete(facet);
+        } else {
+          this.corpusNamecheckedFacets.add(facet);
+        }
+        break;
+
+      case 1:
+        if (this.genrecheckedFacets.has(facet)) {
+          this.genrecheckedFacets.delete(facet);
+        } else {
+          this.genrecheckedFacets.add(facet);
+        }
+        break;
+
+      case 2:
+        if (this.languagecheckedFacets.has(facet)) {
+          this.languagecheckedFacets.delete(facet);
+        } else {
+          this.languagecheckedFacets.add(facet);
+        }
+        break;
+
+      case 3:
+        if (this.publicationDatecheckedFacets.has(facet)) {
+          this.publicationDatecheckedFacets.delete(facet);
+        } else {
+          this.publicationDatecheckedFacets.add(facet);
+        }
+        break;
+
+      default:
+        console.log('unknown facet group.');
+    }
+
+    console.log(this.corpusNamecheckedFacets);
+    console.log(this.genrecheckedFacets);
+    console.log(this.languagecheckedFacets);
+    console.log(this.publicationDatecheckedFacets);
   }
 }

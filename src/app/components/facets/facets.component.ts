@@ -13,7 +13,8 @@ export class FacetsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  filterFacet() {
-    console.log('check');
+  handleFacet(facet: string) {
+    console.log(facet);
+    // this.istexService.handleFacet();
   }
 }

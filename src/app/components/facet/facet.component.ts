@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IstexService } from 'src/app/services/istex.service';
-import { Bucket } from 'src/app/Aggregation';
+import { Bucket, FacetCategory } from 'src/app/Aggregation';
 
 @Component({
   selector: 'app-facet',
@@ -10,14 +10,16 @@ import { Bucket } from 'src/app/Aggregation';
 })
 export class FacetComponent implements OnInit {
   @Input() facetGroup!: Bucket;
-  @Output() checkbox = new EventEmitter();
+  @Input() facetCategory!: FacetCategory;
+  // @Output() checkbox: EventEmitter<string> = new EventEmitter();
 
   constructor(private istexService: IstexService) {}
 
   ngOnInit(): void {}
 
-  onCheck(key: string) {
+  onCheck(facetCategory: FacetCategory, facet: string) {
     // console.log(key);
-    this.checkbox.emit();
+    // this.checkbox.emit(facet);
+    this.istexService.registerFacet(facetCategory, facet);
   }
 }
