@@ -6,5 +6,17 @@ export interface Aggregation {
 }
 
 export interface Bucket {
-  buckets: Array<{ key: string; docCount: number }>;
+  buckets: Array<Facet>;
+}
+
+export interface Facet {
+  key: string;
+  docCount: number;
+}
+
+export enum FacetCategory {
+  corpusName,
+  genre,
+  language,
+  publicationDate,
 }
