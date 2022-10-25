@@ -12,4 +12,8 @@ export class FacetsComponent implements OnInit {
   constructor(private istexService: IstexService) {}
 
   ngOnInit(): void {}
+
+  filterFacet() {
+    console.log('check');
+  }
 }

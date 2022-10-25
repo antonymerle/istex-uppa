@@ -4,7 +4,7 @@
       type="checkbox"
       name="{{ facetElement.key }}"
       value="{{ facetElement.key }}"
-      (click)="onCheck()"
+      (click)="onCheck(facetElement.key)"
     />
     <label for="{{ facetElement.key }}">{{ facetElement.key }}</label>
     {{ facetElement.docCount }}
