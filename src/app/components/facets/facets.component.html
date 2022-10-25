@@ -1,20 +1,21 @@
 <app-facet
-  *ngIf="(facets | async)!.aggregations.corpusName"
+  *ngIf="facets | async"
   class="app-facet"
   [facetGroup]="(facets | async)!.aggregations.corpusName"
+  (checkbox)="filterFacet()"
 ></app-facet>
 <app-facet
-  *ngIf="(facets | async)!.aggregations.corpusName"
+  *ngIf="facets | async"
   class="app-facet"
   [facetGroup]="(facets | async)!.aggregations.genre"
 ></app-facet>
 <app-facet
-  *ngIf="(facets | async)!.aggregations.corpusName"
+  *ngIf="facets | async"
   class="app-facet"
   [facetGroup]="(facets | async)!.aggregations.language"
 ></app-facet>
 <app-facet
-  *ngIf="(facets | async)!.aggregations.corpusName"
+  *ngIf="facets | async"
   class="app-facet"
   [facetGroup]="(facets | async)!.aggregations.publicationDate"
 ></app-facet>
