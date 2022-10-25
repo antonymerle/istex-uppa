@@ -1,5 +1,12 @@
 <ul>
   <li *ngFor="let facetElement of facetGroup.buckets">
-    {{ facetElement.key }} : {{ facetElement.docCount }}
+    <input
+      type="checkbox"
+      name="{{ facetElement.key }}"
+      value="{{ facetElement.key }}"
+      (click)="onCheck()"
+    />
+    <label for="{{ facetElement.key }}">{{ facetElement.key }}</label>
+    {{ facetElement.docCount }}
   </li>
 </ul>
