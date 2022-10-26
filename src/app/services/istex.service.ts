@@ -374,15 +374,17 @@ export class IstexService {
       }
 
       // ex: corpusName:(elsevier%20OR%20wiley)
+
       for (let i = 0; i < params.length; i++) {
         if (params[i].checked) {
           paramsChain += `${params[i].key}${
-            i === params.length - 1 ? '' : '&'
+            // i === params.length - 1 ? '' : ' OR '
+            ' OR '
           }`;
         }
       }
-      if (paramsChain.endsWith('&')) {
-        paramsChain = paramsChain.slice(0, paramsChain.length - 1);
+      if (paramsChain.endsWith(' OR ')) {
+        paramsChain = paramsChain.slice(0, paramsChain.length - 4);
       }
 
       return paramsChain
