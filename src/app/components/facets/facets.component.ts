@@ -7,7 +7,8 @@ import { IstexService } from 'src/app/services/istex.service';
   styleUrls: ['./facets.component.css'],
 })
 export class FacetsComponent implements OnInit {
-  facets = this.istexService.BSApiResponse.asObservable();
+  // facets = this.istexService.BSApiResponse.asObservable();
+  facets = this.istexService.BSfacets.asObservable();
 
   constructor(private istexService: IstexService) {}
 

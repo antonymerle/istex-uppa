@@ -12,6 +12,14 @@ export interface Bucket {
 export interface Facet {
   key: string;
   docCount: number;
+  checked: boolean;
+}
+
+export interface FacetContainer {
+  corpusNamecheckedFacets: Facet[];
+  genrecheckedFacets: Facet[];
+  languagecheckedFacets: Facet[];
+  publicationDatecheckedFacets: Facet[];
 }
 
 export enum FacetCategory {

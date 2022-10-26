@@ -1,5 +1,30 @@
 <app-facet
-  *ngIf="facets | async"
+  *ngIf="(facets | async)!.corpusNamecheckedFacets.length"
+  class="app-facet"
+  [facetGroup]="(facets | async)!.corpusNamecheckedFacets"
+  [facetCategory]="0"
+></app-facet>
+<app-facet
+  *ngIf="(facets | async)!.genrecheckedFacets.length"
+  class="app-facet"
+  [facetGroup]="(facets | async)!.genrecheckedFacets"
+  [facetCategory]="1"
+></app-facet>
+<app-facet
+  *ngIf="(facets | async)!.languagecheckedFacets.length"
+  class="app-facet"
+  [facetGroup]="(facets | async)!.languagecheckedFacets"
+  [facetCategory]="2"
+></app-facet>
+<app-facet
+  *ngIf="(facets | async)!.publicationDatecheckedFacets.length"
+  class="app-facet"
+  [facetGroup]="(facets | async)!.publicationDatecheckedFacets"
+  [facetCategory]="3"
+></app-facet>
+
+<!-- <app-facet
+  *ngIf="facets.corpusNamecheckedFacets.length"
   class="app-facet"
   [facetGroup]="(facets | async)!.aggregations.corpusName"
   [facetCategory]="0"
@@ -21,4 +46,4 @@
   class="app-facet"
   [facetGroup]="(facets | async)!.aggregations.publicationDate"
   [facetCategory]="3"
-></app-facet>
+></app-facet> -->

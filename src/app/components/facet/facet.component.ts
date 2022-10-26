@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IstexService } from 'src/app/services/istex.service';
-import { Bucket, FacetCategory } from 'src/app/Aggregation';
+import { Bucket, FacetCategory, Facet } from 'src/app/Aggregation';
 
 @Component({
   selector: 'app-facet',
@@ -9,7 +9,7 @@ import { Bucket, FacetCategory } from 'src/app/Aggregation';
   styleUrls: ['./facet.component.css'],
 })
 export class FacetComponent implements OnInit {
-  @Input() facetGroup!: Bucket;
+  @Input() facetGroup!: Facet[];
   @Input() facetCategory!: FacetCategory;
   // @Output() checkbox: EventEmitter<string> = new EventEmitter();
 
