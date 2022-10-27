@@ -13,6 +13,7 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectResultsSizeComponent } from './components/select-results-size/select-results-size.component';
 import { FacetComponent } from './components/facet/facet.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FacetComponent } from './components/facet/facet.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

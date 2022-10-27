@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APIResult } from '../APIResult';
 import { IstexRecord } from '../IstexRecord';
-import { FacetCategory, Facet, FacetContainer } from '../Aggregation';
+import {
+  FacetCategory,
+  Facet,
+  FacetContainer,
+  DateRange,
+} from '../Aggregation';
 import { Paginator } from '../Paginator';
 import { Observable, Subject, of, BehaviorSubject } from 'rxjs';
 
@@ -33,6 +38,8 @@ export class IstexService {
     languagecheckedFacets: [] as Facet[],
     publicationDatecheckedFacets: [] as Facet[],
   };
+
+  dateRange: DateRange = { start: -1, end: -1 };
 
   BSfacets = new BehaviorSubject(this.facets);
 
@@ -295,12 +302,14 @@ export class IstexService {
         // }
         break;
 
+      // TODO : supprimer ce code. Remplacer par fn registerDateFacet
       case 3:
-        for (let f of this.BSfacets.getValue().publicationDatecheckedFacets) {
-          if (f.key === facet) {
-            f.checked = !f.checked;
-          }
-        }
+        this.BSfacets.getValue().publicationDatecheckedFacets[0].key = facet;
+        // for (let f of this.BSfacets.getValue().publicationDatecheckedFacets) {
+        //   if (f.key === facet) {
+        //     f.checked = !f.checked;
+        //   }
+        // }
 
         // if (
         //   this.facets.publicationDatecheckedFacets.filter((f) => f === facet)
@@ -368,7 +377,15 @@ export class IstexService {
       let paramsChain = '';
 
       // if publicationDate, format is publicationDate:[1974%20TO%202012]
-      if (facetCategory === 3 && params[0].checked) {
+      if (
+        facetCategory === 3 &&
+        // this.dateRange.start > -1 &&
+        // this.dateRange.start > -1
+        params.length
+      ) {
+        console.log('GENFACETQUERY');
+        console.log(params);
+
         const dates = params[0].key.split('-');
         return ` AND ${selector[facetCategory]}:[${dates[0]} TO ${dates[1]}]`;
       }
@@ -441,5 +458,9 @@ export class IstexService {
         };
       });
     return initFacets;
+  }
+
+  registerDatesFacet(dateRange: DateRange) {
+    this.dateRange = dateRange;
   }
 }

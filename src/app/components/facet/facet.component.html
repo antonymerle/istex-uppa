@@ -1,4 +1,4 @@
-<ul>
+<ul *ngIf="facetCategory < 3">
   <li *ngFor="let facetElement of facetGroup">
     <input
       type="checkbox"
@@ -10,3 +10,15 @@
     {{ facetElement.docCount }}
   </li>
 </ul>
+
+<div *ngIf="facetCategory === 3" class="slider">
+  {{ facetCategory }}
+  <p>Min value: <input type="number" [(ngModel)]="minValue" /></p>
+  <p>Max value: <input type="number" [(ngModel)]="maxValue" /></p>
+  <ngx-slider
+    [(value)]="minValue"
+    [(highValue)]="maxValue"
+    [options]="options"
+  ></ngx-slider>
+  <button type="button" (click)="onSubmit()">Valider</button>
+</div>

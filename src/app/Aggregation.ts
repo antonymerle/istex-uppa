@@ -22,6 +22,11 @@ export interface FacetContainer {
   publicationDatecheckedFacets: Facet[];
 }
 
+export interface DateRange {
+  start: number;
+  end: number;
+}
+
 export enum FacetCategory {
   corpusName,
   genre,
