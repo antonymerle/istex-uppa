@@ -48,8 +48,8 @@ export class FacetComponent implements OnInit {
     this.dateFacet.subscribe((data) => {
       console.log(data);
       const dates = data.publicationDatecheckedFacets[0].key.split('-');
-      this.minValue = parseInt(dates[0]);
-      this.maxValue = parseInt(dates[1]);
+      this.minValue = this.options.floor = parseInt(dates[0]);
+      this.maxValue = this.options.ceil = parseInt(dates[1]);
       console.log('minValue', this.minValue);
       console.log('maxValue', this.maxValue);
     });
