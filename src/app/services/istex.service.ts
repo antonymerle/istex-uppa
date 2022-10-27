@@ -353,7 +353,7 @@ export class IstexService {
 
     console.log('DEBUG genFacetsQuery');
 
-    console.log(facetsQuery);
+    console.log('genFacetsQuery', facetsQuery);
 
     return facetsQuery;
   }
@@ -370,7 +370,7 @@ export class IstexService {
       // if publicationDate, format is publicationDate:[1974%20TO%202012]
       if (facetCategory === 3 && params[0].checked) {
         const dates = params[0].key.split('-');
-        return `${selector[facetCategory]}:[${dates[0]}%20TO%20${dates[1]}]`;
+        return ` AND ${selector[facetCategory]}:[${dates[0]} TO ${dates[1]}]`;
       }
 
       // ex: corpusName:(elsevier%20OR%20wiley)
