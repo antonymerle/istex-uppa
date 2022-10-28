@@ -17,4 +17,10 @@ export class SearchComponent implements OnInit {
   onSubmit() {
     this.istexService.getResults(this.value);
   }
+
+  onEnter(event: any) {
+    event.preventDefault();
+    this.istexService.getResults(this.value);
+    console.log('Votre recherche :' + event.target.value);
+  }
 }

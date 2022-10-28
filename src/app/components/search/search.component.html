@@ -1,4 +1,8 @@
-<form class="search-form" (ngSubmit)="onSubmit()" (keydown.enter)="onSubmit()">
+<form
+  class="search-form"
+  (ngSubmit)="onSubmit()"
+  (keydown.enter)="onEnter($event)"
+>
   <mat-form-field [ngClass]="value ? 'search-form-min' : 'search-form-max'">
     <mat-label>Recherchez dans 27,3 M de documents</mat-label>
     <input
