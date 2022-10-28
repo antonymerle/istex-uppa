@@ -1,4 +1,4 @@
-<form class="form" (ngSubmit)="onSubmit()">
+<form class="search-form" (ngSubmit)="onSubmit()" (keydown.enter)="onSubmit()">
   <mat-form-field [ngClass]="value ? 'search-form-min' : 'search-form-max'">
     <mat-label>Recherchez dans 27,3 M de documents</mat-label>
     <input
@@ -20,7 +20,7 @@
   </mat-form-field>
   <button
     *ngIf="value"
-    mat-button="mat-raised-button"
+    mat-stroked-button
     type="submit"
     (ngSubmit)="onSubmit()"
   >
