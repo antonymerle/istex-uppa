@@ -20,7 +20,7 @@ body {
   margin: 0px auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, minmax(60px, auto));
+  grid-template-rows: repeat(4, minmax(100px, auto));
   gap: 10px;
 }
 
@@ -53,6 +53,10 @@ header img {
   flex-direction: column;
 }
 
+.app-paginator {
+  grid-column: 1/5;
+  }
+
 
 section {
   color: #333;
@@ -66,8 +70,7 @@ li {
   list-style: none;
 }
 
-/* paginator */
-.highlight { color: red; }
+
 
 .app-facet {
   padding: 5px;
