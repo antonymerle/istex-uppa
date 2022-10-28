@@ -8,13 +8,13 @@ import { IstexRecord } from 'src/app/IstexRecord';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  text: string = '';
+  value: string = '';
   results: IstexRecord[] = [];
   constructor(private istexService: IstexService) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    this.istexService.getResults(this.text);
+    this.istexService.getResults(this.value);
   }
 }

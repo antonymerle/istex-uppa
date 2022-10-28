@@ -1,13 +1,29 @@
-<form class="search-form" (ngSubmit)="onSubmit()">
-  <input
-    type="text"
-    [(ngModel)]="text"
-    id="search"
-    name="search"
-    placeholder="Zanclean Megaflood"
-  />
-
-  <button mat-button="mat-raised-button" type="submit" (ngSubmit)="onSubmit()">
+<form class="form" (ngSubmit)="onSubmit()">
+  <mat-form-field [ngClass]="value ? 'search-form-min' : 'search-form-max'">
+    <mat-label>Recherchez dans 27,3 M de documents</mat-label>
+    <input
+      matInput="search"
+      type="search"
+      [(ngModel)]="value"
+      id="search"
+      name="search"
+    />
+    <button
+      *ngIf="value"
+      matSuffix
+      mat-icon-button
+      aria-label="Effacer"
+      (click)="value = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <button
+    *ngIf="value"
+    mat-button="mat-raised-button"
+    type="submit"
+    (ngSubmit)="onSubmit()"
+  >
     Rechercher
   </button>
 </form>

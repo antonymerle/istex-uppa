@@ -13,8 +13,15 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectResultsSizeComponent } from './components/select-results-size/select-results-size.component';
 import { FacetComponent } from './components/facet/facet.component';
+
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { MatButtonModule } from '@angular/material/button';
+import {
+  MatFormFieldModule,
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -35,8 +42,16 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     NgxSliderModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'fill' },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
