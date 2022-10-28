@@ -10,7 +10,9 @@
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+background: whitesmoke;
+}
 
 /* body {
   font-family: "Roboto","Helvetica Neue","sans-serif";
@@ -26,17 +28,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, minmax(100px, auto));
   gap: 10px;
+
 }
 
 
 .app-header {
   grid-column: 1/6;
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
 }
 
-header {
-  display: flex;
-  align-items: center;
-}
+
 
 header img {
   max-width: 200px;
