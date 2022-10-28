@@ -1,8 +1,15 @@
-
-
 nav, ol {
   display: flex;
+  justify-content: center;
 }
+
+nav p {
+  margin-right: 2em;
+}
+
+
+
+
 
 /* paginator */
 .highlight { color: red; }
