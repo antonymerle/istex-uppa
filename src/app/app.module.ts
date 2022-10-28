@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectResultsSizeComponent } from './components/select-results-size/select-results-size.component';
 import { FacetComponent } from './components/facet/facet.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     HttpClientModule,
     BrowserAnimationsModule,
     NgxSliderModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
