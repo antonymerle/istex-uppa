@@ -1,17 +1,28 @@
 <nav class="paginator" *ngIf="getPageIndex() > 0">
   <p>{{ getTotal() }} résultats</p>
-  <button type="button" (click)="getPreviousResults()">Page précédente</button>
+  <button
+    mat-stroked-button
+    class="prev-next-button"
+    type="button"
+    (click)="getPreviousResults()"
+  >
+    Page précédente
+  </button>
   <ol>
-    <li *ngFor="let page of getPagesRange(); let index = index">
-      <a
-        href="#"
-        [ngClass]="{ highlight: page === getPageIndex() }"
-        (click)="getIndexPageResults(page)"
-        >{{ page }}</a
-      >
+    <li
+      *ngFor="let page of getPagesRange(); let index = index"
+      [ngClass]="{ highlight: page === getPageIndex() }"
+      (click)="getIndexPageResults(page)"
+    >
+      <a href="#">{{ page }}</a>
     </li>
   </ol>
-  <button class="btn" type="button" (click)="getNextResults()">
+  <button
+    class="prev-next-button"
+    mat-stroked-button
+    type="button"
+    (click)="getNextResults()"
+  >
     Page suivante
   </button>
   <app-select-results-size

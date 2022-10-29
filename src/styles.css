@@ -74,8 +74,9 @@ section {
   border-radius: 10px;
 }
 
-li {
-  list-style: none;
+
+a, a:visited, a:hover, a:active {
+  color: inherit;
 }
 
 
@@ -89,14 +90,14 @@ li {
 
 /* ".inherited-styles-for-exported-element" is a generated class for the inherited styles of the exported element, feel free to rename it. */
 
-.btn {
+/* .btn {
   border: 0;
   border-radius: 5px;
   box-shadow: rgba(25, 25, 25, .04) 0 0 1px 0, rgba(0, 0, 0, .1) 0 3px 7px 0;
   font-size: 1em;
   height: 30px;
   padding: 0 25px;
-}
+} */
 
 
 
