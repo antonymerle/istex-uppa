@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IstexService } from 'src/app/services/istex.service';
 import { IstexRecord } from 'src/app/IstexRecord';
+import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-search',
