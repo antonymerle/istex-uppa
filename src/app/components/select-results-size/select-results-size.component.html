@@ -1,16 +1,18 @@
 <form>
-  <label for="resultsSize">Results size</label>
-  <select
-    name="resultsSize"
-    id="resultsSize"
-    [(ngModel)]="selected"
-    (change)="onSelectOption()"
-  >
-    <option
-      *ngFor="let result of resultsSize; let i = index"
-      [ngValue]="resultsSize[i]"
+  <mat-form-field>
+    <mat-label name="resultsSize">Results size</mat-label>
+    <select
+      matNativeControl
+      name="resultsSize"
+      [(ngModel)]="selected"
+      (change)="onSelectOption()"
     >
-      {{ resultsSize[i] }}
-    </option>
-  </select>
+      <option
+        *ngFor="let result of resultsSize; let i = index"
+        [value]="resultsSize[i]"
+      >
+        {{ resultsSize[i] }}
+      </option>
+    </select>
+  </mat-form-field>
 </form>
