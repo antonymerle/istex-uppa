@@ -1,0 +1,38 @@
+.title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  /* flex-wrap: wrap; */
+}
+
+.title h3 {
+  margin: 0px;
+}
+
+.title h3 a {
+  background: rgba(0,0,0,.03);
+  color: #3f51b5;
+}
+
+.title p {
+  font-size: medium;
+  margin-left: 30px;
+  margin-bottom: 0px;
+
+}
+
+ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+li {
+  margin-left: 5px;
+  font-weight: 500;
+}

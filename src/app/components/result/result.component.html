@@ -1,17 +1,33 @@
 <section>
-  <h3>{{ result.title }}</h3>
-  <p>{{ result.abstract }}</p>
+  <div class="title">
+    <h3>
+      <a
+        href="{{ result.fulltext[0].uri }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        >{{ result.title }}</a
+      >
+    </h3>
+    <p>{{ result.publicationDate }}</p>
+  </div>
+
   <ul>
-    auteurs
     <li *ngFor="let author of result.author">{{ author.name }}</li>
   </ul>
+  <p>{{ result.abstract }}</p>
+
   <p>Corpus : {{ result.corpusName }}</p>
+
   <p>{{ result.host.title }}</p>
+
   <p>
     vol. {{ result.host.volume }} pages {{ result.host.pages.first }} -
     {{ result.host.pages.last }}
   </p>
+
   <p>Date de publication : {{ result.publicationDate }}</p>
+
   <p>DOI : {{ result.doi }}</p>
+
   <p><a href="{{ result.fulltext[0].uri }}">Full text</a></p>
 </section>
