@@ -1,3 +1,4 @@
-.app-select-results-size {
-  margin-left: 2em;
+.select-result-size {
+  width: 120px;
+  height: 20px;
 }

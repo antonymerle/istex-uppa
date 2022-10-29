@@ -1,7 +1,13 @@
-nav, ol {
+nav {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
+  margin: 0px;
+}
+
+ol {
+  display: flex;
+  padding: 0px;
 }
 
 li {
@@ -24,7 +30,7 @@ li a {
 }
 
 nav p {
-  margin: 0em 1em;
+  margin-right: 1em;
 }
 
 p {
@@ -32,7 +38,7 @@ p {
 }
 
 .prev-next-button {
-  margin: 0em 1em;
+  /* margin: 0em 1em; */
   height: 40px;
   width: fit-content
 }
