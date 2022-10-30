@@ -19,6 +19,5 @@ export class SelectResultsSizeComponent {
 
   onSelectOption() {
     this.istexService.setResultsSize(this.selected);
-    // console.log(this.selected);
   }
 }

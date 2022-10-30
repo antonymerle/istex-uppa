@@ -1,12 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
+
 import { IstexService } from 'src/app/services/istex.service';
-import {
-  Bucket,
-  FacetCategory,
-  Facet,
-  FacetContainer,
-} from 'src/app/Aggregation';
+import { FacetCategory, Facet } from 'src/app/Aggregation';
 import { Options } from '@angular-slider/ngx-slider';
 
 @Component({
@@ -17,11 +12,9 @@ import { Options } from '@angular-slider/ngx-slider';
 export class FacetComponent implements OnInit {
   @Input() facetGroup!: Facet[];
   @Input() facetCategory!: FacetCategory;
-  // @Output() checkbox: EventEmitter<string> = new EventEmitter();
 
   dateFacet = this.istexService.BSfacets.asObservable();
 
-  // bornes = this.setMinValue();
   minValue: number = 0;
   maxValue: number = 0;
   options: Options = {
@@ -36,8 +29,6 @@ export class FacetComponent implements OnInit {
   }
 
   onCheck(facetCategory: FacetCategory, facet: string) {
-    // console.log(key);
-    // this.checkbox.emit(facet);
     this.istexService.registerFacet(facetCategory, facet);
   }
 

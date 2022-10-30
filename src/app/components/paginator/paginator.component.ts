@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { APIResult } from 'src/app/APIResult';
+import { Component, OnInit } from '@angular/core';
 import { IstexService } from 'src/app/services/istex.service';
 
 @Component({

@@ -13,12 +13,6 @@ export class ResultComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // getSummary(): string {
-  //   const abstract: string[] = this.result.abstract.split(' ').slice(0, 25);
-  //   const tldr: string = abstract.join(' ') + '...';
-  //   return tldr;
-  // }
-
   getAccordionDescription(): string {
     return `${this.result.corpusName}, ${this.result.host.title} ...`;
   }

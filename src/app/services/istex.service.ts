@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { APIResult } from '../APIResult';
-import { IstexRecord } from '../IstexRecord';
+import { BehaviorSubject } from 'rxjs';
+
+// interfaces
 import {
   FacetCategory,
   Facet,
   FacetContainer,
   DateRange,
 } from '../Aggregation';
+import { APIResult } from '../APIResult';
+import { IstexRecord } from '../IstexRecord';
 import { Paginator } from '../Paginator';
-import { Observable, Subject, of, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -43,11 +45,6 @@ export class IstexService {
 
   BSfacets = new BehaviorSubject(this.facets);
 
-  // corpusNamecheckedFacets: Set<string> = new Set();
-  // genrecheckedFacets: Set<string> = new Set();
-  // languagecheckedFacets: Set<string> = new Set();
-  // publicationDatecheckedFacets: Set<string> = new Set();
-
   constructor(private http: HttpClient) {}
 
   getTotal(): number {
@@ -65,13 +62,6 @@ export class IstexService {
       '&output=*' +
       '&facet=corpusName,genre,language,publicationDate';
 
-    // const queryFacetsURL =
-    //   this.apiURL +
-    //   query +
-    //   this.fmtSzQueryParam() +
-    //   '&output=*' +
-    //   '&facet=corpusName,genre,language,publicationDate';
-
     console.log(queryURL);
 
     this.http.get<APIResult>(queryURL).subscribe((data) => {
@@ -88,10 +78,6 @@ export class IstexService {
       }
       this.paginator.pageIndex++;
     });
-
-    // this.http.get<APIResult>(queryFacetsURL).subscribe((data) => {
-    //   this.FacetResponse = data;
-    // });
   }
 
   getNextResults(): void {
@@ -139,7 +125,7 @@ export class IstexService {
     this.http.get<APIResult>(apiURLFromIndex).subscribe((data) => {
       this.BSApiResponse.next(data);
       this.BSResult.next(data.hits);
-      // this.incrementIndex(index);
+
       this.paginator.pageIndex = index;
     });
   }
@@ -173,38 +159,9 @@ export class IstexService {
       this.paginator.pageIndex - middleOffset,
       this.paginator.RANGE
     );
-
-    // ========================================
-
-    // // début de pagination
-    // if (this.paginator.pageIndex < 4) {
-    //   return [1, 2, 3, 4, 5];
-    // }
-
-    // // fin de pagination
-    // if (this.paginator.pageIndex >= this.paginator.totalPages - 5) {
-    //   let i = 0;
-    //   while (i < this.paginator.RANGE && i <= this.paginator.totalPages) {
-    //     array.push(this.paginator.pageIndex + i);
-    //     i++;
-    //   }
-    //   return array;
-    // }
-
-    // const middleOffset = 2;
-    // let i = 0;
-    // while (i < this.paginator.RANGE) {
-    //   array.push(this.paginator.pageIndex + i - middleOffset);
-    //   i++;
-    // }
-    // console.log('get page range');
-    // console.log(array);
-
-    // return array;
   }
 
   incrementIndex(n: number) {
-    // const newIndex = this.BSPageIndex.getValue() + n;
     this.paginator.pageIndex += n;
   }
 
@@ -261,14 +218,6 @@ export class IstexService {
             f.checked = !f.checked;
           }
         }
-        // if (
-        //   this.facets.corpusNamecheckedFacets.filter((f) => f.key === facet).length
-        // ) {
-        //   this.facets.corpusNamecheckedFacets =
-        //     this.facets.corpusNamecheckedFacets.filter((f) => f !== facet);
-        // } else {
-        //   this.facets.corpusNamecheckedFacets.push(facet);
-        // }
         break;
 
       case 1:
@@ -277,12 +226,6 @@ export class IstexService {
             f.checked = !f.checked;
           }
         }
-        // if (this.facets.genrecheckedFacets.filter((f) => f === facet).length) {
-        //   this.facets.genrecheckedFacets =
-        //     this.facets.genrecheckedFacets.filter((f) => f !== facet);
-        // } else {
-        //   this.facets.genrecheckedFacets.push(facet);
-        // }
         break;
 
       case 2:
@@ -291,35 +234,11 @@ export class IstexService {
             f.checked = !f.checked;
           }
         }
-
-        // if (
-        //   this.facets.languagecheckedFacets.filter((f) => f === facet).length
-        // ) {
-        //   this.facets.languagecheckedFacets =
-        //     this.facets.languagecheckedFacets.filter((f) => f !== facet);
-        // } else {
-        //   this.facets.languagecheckedFacets.push(facet);
-        // }
         break;
 
       // TODO : supprimer ce code. Remplacer par fn registerDateFacet
       case 3:
         this.BSfacets.getValue().publicationDatecheckedFacets[0].key = facet;
-        // for (let f of this.BSfacets.getValue().publicationDatecheckedFacets) {
-        //   if (f.key === facet) {
-        //     f.checked = !f.checked;
-        //   }
-        // }
-
-        // if (
-        //   this.facets.publicationDatecheckedFacets.filter((f) => f === facet)
-        //     .length
-        // ) {
-        //   this.facets.publicationDatecheckedFacets =
-        //     this.facets.publicationDatecheckedFacets.filter((f) => f !== facet);
-        // } else {
-        //   this.facets.publicationDatecheckedFacets.push(facet);
-        // }
         break;
 
       default:
@@ -335,17 +254,6 @@ export class IstexService {
   }
 
   genFacetsQuery(): string {
-    let facetQuery,
-      corpusNameQuery,
-      genreQuery,
-      languageQuery,
-      publicationDateQuery = '';
-
-    // const corpusNameParams = Array.from(this.corpusNamecheckedFacets);
-    // const genreParams = Array.from(this.genrecheckedFacets);
-    // const languageParams = Array.from(this.languagecheckedFacets);
-    // const publicationDateParams = Array.from(this.publicationDatecheckedFacets);
-
     const facetsQuery = `${this.genFacetQuery(
       0,
       this.BSfacets.getValue().corpusNamecheckedFacets
@@ -371,18 +279,12 @@ export class IstexService {
     const selector = ['corpusName', 'genre', 'language', 'publicationDate']; // indexes map FacetCategory enum
 
     console.log('DEBUG  genFacetQuery');
-    // console.log(params);
 
     if (params.length) {
       let paramsChain = '';
 
       // if publicationDate, format is publicationDate:[1974%20TO%202012]
-      if (
-        facetCategory === 3 &&
-        // this.dateRange.start > -1 &&
-        // this.dateRange.start > -1
-        params.length
-      ) {
+      if (facetCategory === 3 && params.length) {
         console.log('GENFACETQUERY');
         console.log(params);
 
@@ -394,10 +296,7 @@ export class IstexService {
 
       for (let i = 0; i < params.length; i++) {
         if (params[i].checked) {
-          paramsChain += `${params[i].key}${
-            // i === params.length - 1 ? '' : ' OR '
-            ' OR '
-          }`;
+          paramsChain += `${params[i].key}${' OR '}`;
         }
       }
       if (paramsChain.endsWith(' OR ')) {
