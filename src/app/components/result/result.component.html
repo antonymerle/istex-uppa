@@ -14,20 +14,41 @@
   <ul>
     <li *ngFor="let author of result.author">{{ author.name }}</li>
   </ul>
-  <p>{{ result.abstract }}</p>
 
-  <p>Corpus : {{ result.corpusName }}</p>
-
-  <p>{{ result.host.title }}</p>
-
-  <p>
-    vol. {{ result.host.volume }} pages {{ result.host.pages.first }} -
-    {{ result.host.pages.last }}
+  <p class="abstract">
+    {{ result.abstract ? result.abstract : "Aucun abstract disponible." }}
   </p>
 
-  <p>Date de publication : {{ result.publicationDate }}</p>
+  <mat-accordion>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title
+          ><b class="panel-title">Infos bibliographiques :</b></mat-panel-title
+        >
+        <mat-panel-description>
+          {{ panelOpenState ? "" : getAccordionDescription() }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-  <p>DOI : {{ result.doi }}</p>
-
-  <p><a href="{{ result.fulltext[0].uri }}">Full text</a></p>
+      <ul>
+        <li><b>Corpus :</b> {{ result.corpusName }}</li>
+        <li>
+          <b>Revue :</b>
+          <p>{{ result.host.title }}</p>
+        </li>
+        <li><b>Corpus :</b> {{ result.corpusName }}</li>
+        <li><b>Corpus :</b> {{ result.corpusName }}</li>
+        <li>
+          vol. {{ result.host.volume }} pages {{ result.host.pages.first }} -
+          {{ result.host.pages.last }}
+        </li>
+        <li><b>Date de publication : </b>{{ result.publicationDate }}</li>
+        <li><b>DOI : </b>{{ result.doi }}</li>
+        <li><a href="{{ result.fulltext[0].uri }}">Full text</a></li>
+      </ul>
+    </mat-expansion-panel>
+  </mat-accordion>
 </section>
