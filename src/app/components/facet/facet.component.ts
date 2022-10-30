@@ -65,4 +65,23 @@ export class FacetComponent implements OnInit {
     console.log(this.minValue, this.maxValue);
     this.istexService.registerFacet(3, `${this.minValue}-${this.maxValue}`);
   }
+
+  getFacetCategory(): string {
+    switch (this.facetCategory) {
+      case 0:
+        return 'corpus';
+
+      case 1:
+        return 'type';
+
+      case 2:
+        return 'langue';
+
+      case 3:
+        return 'dates';
+
+      default:
+        return '';
+    }
+  }
 }

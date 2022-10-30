@@ -1,5 +1,17 @@
 ol {
 list-style-type: none;
-padding: 0px;
+padding: 5px;
 margin: 0px;
+}
+
+h2 {
+background: #333;
+color: whitesmoke;
+margin: 0px;
+padding: 0px 10px 0px 10px;
+font-size: medium;
+}
+
+.slider {
+  padding: 5px;
 }

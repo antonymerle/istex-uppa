@@ -1,3 +1,4 @@
+<h2>{{ getFacetCategory() }}</h2>
 <ol *ngIf="facetCategory < 3">
   <li *ngFor="let facetElement of facetGroup">
     <input
@@ -12,9 +13,10 @@
 </ol>
 
 <div *ngIf="facetCategory === 3" class="slider">
-  {{ facetCategory }}
-  <p>Min value: <input type="number" [(ngModel)]="minValue" /></p>
-  <p>Max value: <input type="number" [(ngModel)]="maxValue" /></p>
+  <p>De :</p>
+  <input type="number" [(ngModel)]="minValue" />
+  <p>A:</p>
+  <input type="number" [(ngModel)]="maxValue" />
   <ngx-slider
     [(value)]="minValue"
     [(highValue)]="maxValue"
