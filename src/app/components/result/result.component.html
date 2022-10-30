@@ -16,7 +16,7 @@
   </ul>
 
   <p class="abstract">
-    {{ result.abstract ? result.abstract : "Aucun abstract disponible." }}
+    {{ result.abstract ? result.abstract : "Pas d'abstract disponible." }}
   </p>
 
   <mat-accordion>
@@ -26,7 +26,9 @@
     >
       <mat-expansion-panel-header>
         <mat-panel-title
-          ><b class="panel-title">Infos bibliographiques :</b></mat-panel-title
+          ><b class="panel-title"
+            >Informations bibliographiques :</b
+          ></mat-panel-title
         >
         <mat-panel-description>
           {{ panelOpenState ? "" : getAccordionDescription() }}
@@ -47,7 +49,14 @@
         </li>
         <li><b>Date de publication : </b>{{ result.publicationDate }}</li>
         <li><b>DOI : </b>{{ result.doi }}</li>
-        <li><a href="{{ result.fulltext[0].uri }}">Full text</a></li>
+        <li>
+          <a
+            href="{{ result.fulltext[0].uri }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Full text</a
+          >
+        </li>
       </ul>
     </mat-expansion-panel>
   </mat-accordion>
