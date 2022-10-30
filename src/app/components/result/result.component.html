@@ -12,7 +12,9 @@
   </div>
 
   <ul>
-    <li *ngFor="let author of result.author">{{ author.name }}</li>
+    <li *ngFor="let author of result.author; index as i">
+      {{ author.name }}{{ i < result.author.length - 1 ? "," : "" }}
+    </li>
   </ul>
 
   <p class="abstract">
