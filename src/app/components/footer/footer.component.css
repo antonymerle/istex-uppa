@@ -1,0 +1,10 @@
+footer {
+display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-small;
+}
+
+.github {
+  margin-left: 10px;
+}
