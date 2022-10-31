@@ -1,36 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-} */
-
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 background: whitesmoke;
 }
 
-/* body {
-  font-family: "Roboto","Helvetica Neue","sans-serif";
-  font-size: 16px;
-  color: #333;
-  background: #DBDBEB;
-} */
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
 
 .container {
   max-width: 1144px;
   margin: 0px auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, minmax(60px, auto));
+  grid-template-rows: repeat(5, minmax(auto, auto));
   gap: 10px;
 
 }
-
 
 .app-header {
   grid-column: 1/6;
@@ -39,8 +24,6 @@ background: whitesmoke;
   padding: 10px;
   margin-top: 10px;
 }
-
-
 
 header img {
   max-width: 200px;
@@ -68,6 +51,9 @@ header img {
   grid-column: 1/6;
   }
 
+.app-footer {
+  grid-column: 1/6;
+}
 
 section {
   color: #333;
@@ -76,24 +62,3 @@ section {
   padding: 30px 20px;
   border-radius: 10px;
 }
-
-
-a, a:visited, a:hover, a:active {
-  color: inherit;
-}
-
-
-/* ".inherited-styles-for-exported-element" is a generated class for the inherited styles of the exported element, feel free to rename it. */
-
-/* .btn {
-  border: 0;
-  border-radius: 5px;
-  box-shadow: rgba(25, 25, 25, .04) 0 0 1px 0, rgba(0, 0, 0, .1) 0 3px 7px 0;
-  font-size: 1em;
-  height: 30px;
-  padding: 0 25px;
-} */
-
-
-
-
