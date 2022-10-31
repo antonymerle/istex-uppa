@@ -5,8 +5,9 @@ const { IndentStyle } = require("typescript");
 const app = express();
 
 const port = process.env.PORT || 5000;
-const appPath = path.join("../", "dist", "istex-uppa");
+const appPath = path.join(__dirname, "../", "dist", "istex-uppa");
 const indexPath = path.join(appPath, "index.html");
+console.log(indexPath);
 
 app.use(express.static(appPath));
 
