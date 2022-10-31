@@ -21,14 +21,17 @@ export class PaginatorComponent implements OnInit {
 
   getNextResults() {
     this.istexService.getNextResults();
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
 
   getPreviousResults() {
     this.istexService.getPreviousResults();
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
 
   getIndexPageResults(index: number) {
     this.istexService.getPageResultsByPageIndex(index);
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
 
   getPagesRange(): Array<number> {
