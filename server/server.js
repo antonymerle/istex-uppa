@@ -11,7 +11,7 @@ console.log(indexPath);
 
 app.use(express.static(appPath));
 
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(indexPath);
 });
 
