@@ -2,6 +2,7 @@
   display: flex;
  justify-content: flex-start;
  align-items: flex-start;
+ width: 100%;
 }
 
 .search-form-max {
@@ -16,4 +17,14 @@ width: 100%;
   margin-left: 1em;
   height: 50px;
   width: 20%;
+}
+
+.icon-to-bottom {
+  transform: scale(1.2);
+  color: #333;
+}
+
+.anchor {
+  margin: 0px 0px 15px 10px;
+  align-self: center;
 }

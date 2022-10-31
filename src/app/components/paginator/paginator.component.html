@@ -1,5 +1,6 @@
 <nav class="paginator" *ngIf="getPageIndex() > 0">
   <p>{{ getTotal() }} résultats</p>
+  <a id="paginator-anchor-bottom"></a>
   <button
     mat-stroked-button
     class="prev-next-button"
@@ -28,4 +29,10 @@
   <app-select-results-size
     class="app-select-results-size"
   ></app-select-results-size>
+
+  <div class="anchor">
+    <a href="#anchor-top"
+      ><mat-icon class="icon-to-top" fontIcon="arrow_upward"></mat-icon
+    ></a>
+  </div>
 </nav>

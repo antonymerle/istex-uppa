@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IstexService } from 'src/app/services/istex.service';
-import { IstexRecord } from 'src/app/IstexRecord';
 
 @Component({
   selector: 'app-search',
@@ -9,7 +8,7 @@ import { IstexRecord } from 'src/app/IstexRecord';
 })
 export class SearchComponent implements OnInit {
   value: string = '';
-  results: IstexRecord[] = [];
+
   constructor(private istexService: IstexService) {}
 
   ngOnInit(): void {}
@@ -22,5 +21,9 @@ export class SearchComponent implements OnInit {
     event.preventDefault();
     this.istexService.getResults(this.value);
     console.log('Votre recherche :' + event.target.value);
+  }
+
+  areResultsDisplayed(): boolean {
+    return this.istexService.getTotal() ? true : false;
   }
 }

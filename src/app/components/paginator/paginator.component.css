@@ -48,3 +48,13 @@ nav p {
 .app-select-results-size {
   margin-bottom: 10px;
 }
+
+.icon-to-top {
+  transform: scale(1.2);
+  color: #333;
+}
+
+.anchor {
+  margin: 15px 0px 15px 20px;
+  align-self: center;
+}
