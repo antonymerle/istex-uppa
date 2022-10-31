@@ -1,3 +1,13 @@
+<div class="home" *ngIf="areResultsDisplayed()">
+  <a href="/"
+    ><mat-icon
+      aria-hidden="false"
+      aria-label="Home"
+      class="icon-home"
+      fontIcon="home"
+    ></mat-icon
+  ></a>
+</div>
 <form
   class="search-form"
   (ngSubmit)="onSubmit()"
@@ -32,8 +42,13 @@
     Rechercher
   </button>
 </form>
-<div class="anchor">
-  <a href="#paginator-anchor-bottom" *ngIf="areResultsDisplayed()"
-    ><mat-icon class="icon-to-bottom" fontIcon="arrow_downward"></mat-icon
+<div class="anchor" *ngIf="areResultsDisplayed()">
+  <a href="#paginator-anchor-bottom"
+    ><mat-icon
+      aria-hidden="false"
+      aria-label="Vers le bas de la page"
+      class="icon-to-bottom"
+      fontIcon="arrow_downward"
+    ></mat-icon
   ></a>
 </div>
