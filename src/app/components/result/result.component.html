@@ -38,19 +38,21 @@
       </mat-expansion-panel-header>
 
       <ul>
-        <li><b>Corpus :</b> {{ result.corpusName }}</li>
         <li>
-          <b>Revue :</b>
+          <b>Corpus :</b><br />
+          {{ result.corpusName }}
+        </li>
+        <li>
+          <b>Revue :</b><br />
           <p>{{ result.host.title }}</p>
         </li>
-        <li><b>Corpus :</b> {{ result.corpusName }}</li>
-        <li><b>Corpus :</b> {{ result.corpusName }}</li>
         <li>
-          vol. {{ result.host.volume }} pages {{ result.host.pages.first }} -
+          <b>vol.</b><br />{{ result.host.volume }} pages
+          {{ result.host.pages.first }} -
           {{ result.host.pages.last }}
         </li>
-        <li><b>Date de publication : </b>{{ result.publicationDate }}</li>
-        <li><b>DOI : </b>{{ result.doi }}</li>
+        <li><b>Date de publication :</b><br />{{ result.publicationDate }}</li>
+        <li><b>DOI :</b><br />{{ result.doi }}</li>
         <li>
           <a
             href="{{ result.fulltext[0].uri }}"
