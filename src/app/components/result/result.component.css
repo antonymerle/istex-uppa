@@ -1,10 +1,9 @@
 .title {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   margin: 0px;
-  padding: 0px;
-  /* flex-wrap: wrap; */
+  padding: 0px 10px 0px 0px;
 }
 
 .title h3 {
@@ -21,7 +20,7 @@
 .title p {
   font-size: medium;
   margin-left: 30px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
 }
 
 ul {
