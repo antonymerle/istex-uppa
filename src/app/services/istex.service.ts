@@ -17,7 +17,7 @@ import { Paginator } from '../Paginator';
   providedIn: 'root',
 })
 export class IstexService {
-  private apiURL = 'https://api.istex.fr/document/?q=';
+  private apiURL = 'https://api-istex-fr.rproxy.univ-pau.fr/document/?q=';
   apiResponse!: APIResult;
   results: IstexRecord[] = [];
   paginator: Paginator = {
